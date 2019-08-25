@@ -11,8 +11,9 @@ make sure [this repo](https://github.com/codingx-2019-team4/slam_qt_vtk) is in y
 ``` 
 cd
 git clone https://github.com/codingx-2019-team4/SLAM_Editor.git
+cd SLAM_Editor
 git checkout ros
-cd /SLAM_Editor/SLAM_Editor
+cd SLAM_Editor
 mkdir build && cd build
 cmake ..
 make
