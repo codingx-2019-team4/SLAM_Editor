@@ -1,18 +1,29 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+#include <QMessageBox>
+
+#include <stdlib.h>
+#include <stdio.h>
+
+#include <qnode.h>
+
+using namespace std;
+using namespace Qt;
+using namespace rosnode;
+
+MainWindow::MainWindow(int argc,
+                       char** argv,
+                       QWidget *parent) :
+                        QMainWindow(parent),
+                        qnode(argc,argv),
+                        ui(new Ui::MainWindow){
     ui->setupUi(this);
-    scene = new CanvasScene(
-                ui->Canvas->x(),
-                ui->Canvas->y(),
-                ui->Canvas->width()-2,
-                ui->Canvas->height()-2
-                );
-   ui->Canvas->setScene(scene);
+
+    canvasView = new CanvasView();
+    ui->Canvas->addWidget(canvasView);
+
+    canvasView->setInteractive(true);
 
 }
 
@@ -27,20 +38,39 @@ MainWindow::~MainWindow()
 // Change the mouse status to ERASER
 void MainWindow::on_MS_eraser_clicked()
 {
+    canvasView->setEraser();
     ui->MStatus->setText("Eraser");
-    scene->setEraser();
 }
 
 // Change the mouse status to PAINTER
 void MainWindow::on_MS_painter_clicked()
 {
+    canvasView->setPainter();
     ui->MStatus->setText("Painter");
-    scene->setPainter();
 }
 
 // Change the mouse status to MOUSEㄋ
 void MainWindow::on_MS_mouse_clicked()
 {
+    canvasView->setMouse();
     ui->MStatus->setText("Mouse");
-    scene->setMouse();
 }
+
+void MainWindow::showNoMasterMessage() {
+    QMessageBox msgBox;
+    msgBox.setText("Couldn't find the ros master.");
+    msgBox.exec();
+    close();
+}
+
+
+void MainWindow::on_Start_clicked(bool checked)
+{
+    if ( !qnode.init() ) {
+        showNoMasterMessage();
+    }else {
+        ui->starL->setText("Connected");
+    }
+}
+
+

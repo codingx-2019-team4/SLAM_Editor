@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2019-08-24T17:06:07
+# Project created by QtCreator 2019-08-14T10:39:46
 #
 #-------------------------------------------------
 
@@ -15,11 +15,16 @@ INCLUDEPATH += -I /opt/ros/kinetic/include
 DEPENDPATH +=  /opt/ros/kinetic/include
 LIBS += -L/opt/ros/kinetic/lib -lroscpp -lrospack -lpthread -lrosconsole -lrosconsole_log4cxx -lrosconsole_backend_interface -lxmlrpcpp -lroscpp_serialization -lrostime  -lcpp_common  -lroslib -ltf  -lyaml-cpp -lkdl_conversions
 
+
 SOURCES += main.cpp\
         mainwindow.cpp \
-    canvasscene.cpp
+    canvasScene.cpp \
+    canvasView.cpp\
+    qnode.cpp
 
 HEADERS  += mainwindow.h \
-    canvasscene.h
+    canvasScene.h \
+    canvasView.h \
+    qnode.h\
 
 FORMS    += mainwindow.ui
