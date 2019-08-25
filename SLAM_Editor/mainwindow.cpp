@@ -2,11 +2,16 @@
 #include "ui_mainwindow.h"
 
 #include <QMessageBox>
+#include <QApplication>
+#include <QProcess>
 
 #include <stdlib.h>
 #include <stdio.h>
 
 #include <qnode.h>
+
+#include <ros/ros.h>
+#include <ros/network.h>
 
 using namespace std;
 using namespace Qt;
@@ -24,6 +29,13 @@ MainWindow::MainWindow(int argc,
     ui->Canvas->addWidget(canvasView);
 
     canvasView->setInteractive(true);
+
+    if(!ifstart){
+        //ui->Start->setEnabled(false);
+        ui->Stop->setEnabled(false);
+        ui->Save->setEnabled(false);
+        ui->starL->setText("Disconnected");
+    }
 
 }
 
@@ -60,17 +72,47 @@ void MainWindow::showNoMasterMessage() {
     QMessageBox msgBox;
     msgBox.setText("Couldn't find the ros master.");
     msgBox.exec();
-    close();
+    //close();
 }
 
 
-void MainWindow::on_Start_clicked(bool checked)
+void MainWindow::on_Start_clicked()
 {
-    if ( !qnode.init() ) {
+    //ros::init(qnode.init_argc,init_argv,"FireHouse");
+    if ( !qnode.check_master() ) {
         showNoMasterMessage();
+        ifstart = false;
     }else {
         ui->starL->setText("Connected");
+        ui->Stop->setEnabled(true);
+        ui->Save->setEnabled(true);
+        ui->Start->setEnabled(false);
+        ifstart = true;
+        process = new QProcess();
+        try{
+            process->startDetached("rosrun fire_app core_controller.py");
+            //process->start("roslaunch fire_house gazebo.launch");
+        }catch (exception& e){
+            cout << "[ERROR] fire_app core_controller.py " << endl;
+        }
     }
 }
 
 
+
+void MainWindow::on_Stop_clicked()
+{
+    ui->starL->setText("Disconnected");
+    ui->Stop->setEnabled(false);
+    ui->Save->setEnabled(false);
+    ui->Start->setEnabled(true);
+    ifstart = false;
+    qnode.stop_map();
+    try{
+        process->terminate();
+        process->kill();
+        delete process;
+    }catch (exception& e){
+        cout << "Mapping terminate. " << endl;
+    }
+}

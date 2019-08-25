@@ -38,6 +38,9 @@ namespace rosnode {
 		QNode(int argc, char** argv );
 		virtual ~QNode();
 		bool init();
+        bool check_master();
+        void stop_map();
+        ros::NodeHandle *n;
 		bool init(const std::string &master_url, const std::string &host_url);
 		void run();
 

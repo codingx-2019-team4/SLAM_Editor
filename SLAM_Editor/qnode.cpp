@@ -17,6 +17,9 @@
 #include <sstream>
 #include "qnode.h"
 
+#include <stdio.h>
+using namespace std;
+
 /*****************************************************************************
 ** Namespaces
 *****************************************************************************/
@@ -40,8 +43,27 @@ namespace rosnode {
         wait();
     }
 
+    bool QNode::check_master() {
+        ros::init(init_argc,init_argv,"FireHouse");
+        if ( ! ros::master::check() ) {
+            return false;
+        }
+        ros::start();
+        n = new ros::NodeHandle;
+        return true;
+    }
+
+    void QNode::stop_map() {
+        if (n->hasParam("/start_mapping") ) {
+            n->setParam("/start_mapping", 0);
+        }else {
+            cout<<"[ERROR] no \"start_mapping\" parameter find."<<endl;
+        }
+
+    }
+
     bool QNode::init() {
-        ros::init(init_argc,init_argv,"button_test");
+        ros::init(init_argc,init_argv,"FireHouse");
         if ( ! ros::master::check() ) {
             return false;
         }
