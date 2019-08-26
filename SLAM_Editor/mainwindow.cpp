@@ -44,3 +44,14 @@ void MainWindow::on_MS_mouse_clicked()
     ui->MStatus->setText("Mouse");
     scene->setMouse();
 }
+
+void MainWindow::on_Save_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(
+                    this, tr("open image file"),
+                    "./", tr("Image files(*.bmp *.jpg *.pbm *.pgm *.png *.ppm *.xbm *.xpm);;All files (*.*)"));
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly);
+    QPixmap pixmap = ui->Canvas->grab();
+    pixmap.save(&file, "PNG");
+}

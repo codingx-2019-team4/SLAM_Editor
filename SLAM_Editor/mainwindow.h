@@ -4,6 +4,10 @@
 
 #include <QMainWindow>
 #include "canvasscene.h"
+#include <QProcess>
+#include <QFileDialog>
+#include <QFile>
+#include <QPixmap>
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +36,7 @@ private slots:
     void on_MS_painter_clicked();
     void on_MS_mouse_clicked();
 
+    void on_Save_clicked();
 };
 
 #endif // MAINWINDOW_H
