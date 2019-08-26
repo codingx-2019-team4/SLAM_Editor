@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>550</height>
+    <width>850</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0">
       <property name="rightMargin">
        <number>0</number>
       </property>
@@ -152,7 +152,7 @@
        </layout>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
+       <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,0">
         <property name="spacing">
          <number>25</number>
         </property>
@@ -169,11 +169,29 @@
          <number>20</number>
         </property>
         <item>
+         <widget class="QPushButton" name="pushButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>15</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Load Image</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QPushButton" name="MS_mouse">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
             <horstretch>0</horstretch>
-            <verstretch>1</verstretch>
+            <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="font">
@@ -194,7 +212,7 @@
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
             <horstretch>0</horstretch>
-            <verstretch>1</verstretch>
+            <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="font">
@@ -215,7 +233,7 @@
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
             <horstretch>0</horstretch>
-            <verstretch>2</verstretch>
+            <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="font">
@@ -267,7 +285,10 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="Canvas">
+     <layout class="QVBoxLayout" name="Canvas" stretch="">
+      <property name="spacing">
+       <number>6</number>
+      </property>
       <property name="sizeConstraint">
        <enum>QLayout::SetDefaultConstraint</enum>
       </property>

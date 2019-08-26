@@ -116,3 +116,31 @@ void MainWindow::on_Stop_clicked()
         cout << "Mapping terminate. " << endl;
     }
 }
+
+void MainWindow::on_Save_clicked()
+{
+    //if(ifstart){
+    if(ifstart){
+        //QString path = QFileDialog::getExistingDirectory(this, tr("Choose directories"), ".", QFileDialog::ReadOnly);
+        QString path = QFileDialog::getSaveFileName(
+                            this, tr("open image file"));
+
+        cout<< "[Directory22]" <<path.data()<<endl;
+        cout<< "[Directory]" <<path.toStdString()<<endl;
+        process2 = new QProcess();
+        string com = path.toStdString();
+        com = "rosrun map_server map_saver -f "+com;
+        try{
+            process2->start(com.c_str());
+            process2->waitForFinished();
+            process2->close();
+            delete process2;
+            cout<<"[Message] map saved. " << endl;
+        }catch (exception& e){
+            cout << "[ERROR] map server crash." << endl;
+        }
+    }else {
+        cout<<"[ERROR] core crash. " << endl;
+    }
+
+}

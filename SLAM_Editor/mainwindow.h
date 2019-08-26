@@ -16,6 +16,11 @@
 #include "canvasView.h"
 #include "qnode.h"
 
+#include <QProcess>
+#include <QFileDialog>
+#include <QFile>
+#include <QPixmap>
+
 namespace Ui {
 class MainWindow;
 }
@@ -34,6 +39,7 @@ void showNoMasterMessage();
 
 bool ifstart=false;
 QProcess *process;
+QProcess *process2;
 
 private slots:
     // Change the type of the cursor
@@ -45,9 +51,11 @@ private slots:
 
     void on_Stop_clicked();
 
+    void on_Save_clicked();
+
 private:
-    Ui::MainWindow *ui;
     rosnode::QNode qnode;
+    Ui::MainWindow *ui;
     CanvasView *canvasView;
 
 
