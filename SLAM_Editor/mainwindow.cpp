@@ -34,6 +34,7 @@ MainWindow::MainWindow(int argc,
         //ui->Start->setEnabled(false);
         ui->Stop->setEnabled(false);
         ui->Save->setEnabled(false);
+        ui->ImSaveB->setEnabled(false);
         ui->starL->setText("Disconnected");
     }
 
@@ -123,7 +124,7 @@ void MainWindow::on_Save_clicked()
     if(ifstart){
         //QString path = QFileDialog::getExistingDirectory(this, tr("Choose directories"), ".", QFileDialog::ReadOnly);
         QString path = QFileDialog::getSaveFileName(
-                            this, tr("open image file"));
+                            this, tr("Choose directories"));
 
         cout<< "[Directory22]" <<path.data()<<endl;
         cout<< "[Directory]" <<path.toStdString()<<endl;
@@ -142,5 +143,27 @@ void MainWindow::on_Save_clicked()
     }else {
         cout<<"[ERROR] core crash. " << endl;
     }
+
+}
+
+
+
+void MainWindow::on_ImLoadB_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(
+                        this, tr("open image file"),
+                        "./", tr("Image files(*.bmp *.pgm *.png *.ppm);;All files (*.*)"));
+    QFile file(fileName);
+    file.open(QIODevice::WriteOnly);
+
+    //QPixmap pixmap = ui->Canvas->grab();
+    //pixmap.save(&file, "PNG");
+}
+
+void MainWindow::on_ImSaveB_clicked()
+{
+    QString fileName = QFileDialog::getSaveFileName(
+                        this, tr("open image file"),
+                        "./", tr("Image files(*.bmp *.jpg *.pbm *.pgm *.png *.ppm *.xbm *.xpm);;All files (*.*)"));
 
 }

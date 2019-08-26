@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>850</width>
-    <height>600</height>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -169,22 +169,44 @@
          <number>20</number>
         </property>
         <item>
-         <widget class="QPushButton" name="pushButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
+          <property name="spacing">
+           <number>10</number>
           </property>
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-           </font>
+          <property name="topMargin">
+           <number>0</number>
           </property>
-          <property name="text">
-           <string>Load Image</string>
-          </property>
-         </widget>
+          <item>
+           <widget class="QPushButton" name="ImLoadB">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Load Image</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="ImSaveB">
+            <property name="font">
+             <font>
+              <pointsize>15</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Save Image</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
         <item>
          <widget class="QPushButton" name="MS_mouse">
@@ -285,7 +307,7 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="Canvas" stretch="">
+     <layout class="QVBoxLayout" name="Canvas">
       <property name="spacing">
        <number>6</number>
       </property>

@@ -53,6 +53,11 @@ private slots:
 
     void on_Save_clicked();
 
+
+    void on_ImLoadB_clicked();
+
+    void on_ImSaveB_clicked();
+
 private:
     rosnode::QNode qnode;
     Ui::MainWindow *ui;
