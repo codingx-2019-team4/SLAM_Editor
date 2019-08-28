@@ -40,7 +40,7 @@ private slots:
     void wheelEvent(QWheelEvent *);
 
     void on_Save_clicked();
-    void on_pushButton_clicked();
+    //void on_pushButton_clicked();
 };
 
 #endif // MAINWINDOW_H
