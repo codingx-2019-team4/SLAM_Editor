@@ -17,6 +17,7 @@
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
 #include <QPen>
+#include <QWheelEvent>
 
 
 
