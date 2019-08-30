@@ -9,7 +9,7 @@
 #include <QFile>
 #include <QPixmap>
 #include <QDebug>
-#include <QScrollBar>l
+#include <QScrollBar>
 
 namespace Ui {
 class MainWindow;
@@ -27,29 +27,25 @@ public:
 private:
     Ui::MainWindow *ui;
     CanvasScene *scene;
+    double *viewSize;
 
 private slots:
     // Change the type of the cursor
-    void on_MS_eraser_clicked();
-    void on_MS_painter_clicked();
     void on_MS_mouse_clicked();
-    void wheelEvent(QWheelEvent *);
-
-    void on_Save_clicked();
-<<<<<<< Updated upstream
-    //void on_pushButton_clicked();
-=======
-    void on_Load_clicked();
-    void on_Eraser_THICKNESS_sliderMoved(int position);
-    void on_Painter_THICKNESS_sliderMoved(int position);
-
-
+    void on_MS_pen_clicked();
+    void on_MS_eraser_clicked();
     void on_Door_clicked();
-
     void on_Sensor_clicked();
 
-protected:
->>>>>>> Stashed changes
+    // Image IO
+    void on_Save_clicked();
+    void on_Load_clicked();
+
+    // Drawing features
+    void wheelEvent(QWheelEvent *);
+    void on_Eraser_THICKNESS_sliderMoved(int position);
+    void on_Pen_THICKNESS_sliderMoved(int position);
+
 };
 
 #endif // MAINWINDOW_H

@@ -3,7 +3,7 @@
 
 // Mouse status
 #define MS_MOUSE 301
-#define MS_PAINTER 302
+#define MS_PEN 302
 #define MS_ERASER 303
 #define DOOR 304
 #define SENSOR 305
@@ -15,31 +15,35 @@
 #include <QLine>
 #include <QGraphicsScene>
 #include <QGraphicsItem>
+#include <QGraphicsItemGroup>
 #include <QGraphicsLineItem>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsSceneMouseEvent>
-#include <QGraphicsItemGroup>
 #include <QPainter>
 #include <QPen>
-#include <QWheelEvent>
 #include <QDebug>
-#include <QGradient>
-
-
+#include <QWheelEvent>
 
 class CanvasScene : public QGraphicsScene
 {
 public:
+
+    // Constructor (info of input image)
     CanvasScene(int x, int y, int w, int h);
-    void setEraser();
+
+    // Mouse status
     void setMouse();
-    void setPainter();
+    void setPen();
+    void setEraser();
     void setDoor();
     void setSensor();
-    void setEraserThickness(int);
-    void setPainterThickness(int);
+
+    // Set painters' thickness
+    void setEraserThickness(qreal);
+    void setPenThickness(qreal);
+
+    // Scene setting
     void setBackground(QString);
-    int getMS();
     void hideIcons();
 
 private:
@@ -47,18 +51,17 @@ private:
     // The coordinates to draw lines
     QPoint* LStart;
     QPoint* LEnd;
-    bool erasing = false;
-    int mouseStatus = MS_MOUSE;
-    int EraserThickness = 10;
-    int PainterThickness = 5;
-    QGraphicsItem* backgroundItem;
 
+    bool *erasing;
+    qreal *mouseStatus;
+
+    // Painters' thickness
+    qreal *PenThickness;
+    qreal *EraserThickness;
+
+    // Groups of doors & sensors
     QGraphicsItemGroup* doors;
     QGraphicsItemGroup* sensors;
-
-
-
-
 
 public slots:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);

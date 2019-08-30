@@ -6,51 +6,37 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    ui->Canvas->setGeometry(180, 20, 1000, 1000);
-    scene = new CanvasScene(
-                0,
-                0,
-                1984,
-                1984
-                );
-   ui->Canvas->setScene(scene);
-   ui->Canvas->setInteractive(true);
-   ui->Canvas->horizontalScrollBar()->setEnabled(false);
-   ui->Canvas->verticalScrollBar()->setEnabled(false);
-   ui->Canvas->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-   ui->Canvas->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-   ui->Eraser_THICKNESS->setRange(10, 100);
-   ui->Painter_THICKNESS->setRange(5, 30);
-   ui->Doors->setGeometry(QRect(0, 0, this->width(), this->height()));
-   qDebug()<<ui->Doors->geometry();
-   ui->Doors->setEnabled(false);
+
+    scene = new CanvasScene(0, 0, 1984, 1984);  // Size of the input map
+
+    // Variables initialize
+    this->viewSize = new double(1000);
+
+    // Canvas setup
+    ui->Canvas->setGeometry(180, 20, *viewSize, *viewSize);     // Resize
+    ui->Canvas->setScene(scene);                                // Set scene
+    ui->Canvas->setDragMode(QGraphicsView::ScrollHandDrag);     // Set to hand drag
+    ui->Canvas->horizontalScrollBar()->setEnabled(false);       // Turn off scroll bar moving
+    ui->Canvas->verticalScrollBar()->setEnabled(false);
+    ui->Canvas->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);   // Hide the scroll bar
+    ui->Canvas->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    // Slider setup
+    ui->Eraser_THICKNESS->setRange(10, 100);
+    ui->Pen_THICKNESS->setRange(5, 30);
+
+
 }
 
 MainWindow::~MainWindow()
 {
+    delete scene;
     delete ui;
 }
 
-
 // *** Mouse Status ***
 
-// Change the mouse status to ERASER
-void MainWindow::on_MS_eraser_clicked()
-{
-    ui->MStatus->setText("Eraser");
-    scene->setEraser();
-    ui->Canvas->setDragMode(QGraphicsView::NoDrag);
-}
-
-// Change the mouse status to PAINTER
-void MainWindow::on_MS_painter_clicked()
-{
-    ui->MStatus->setText("Painter");
-    scene->setPainter();
-    ui->Canvas->setDragMode(QGraphicsView::NoDrag);
-}
-
-// Change the mouse status to MOUSE
+// To MOUSE
 void MainWindow::on_MS_mouse_clicked()
 {
     ui->MStatus->setText("Mouse");
@@ -58,14 +44,31 @@ void MainWindow::on_MS_mouse_clicked()
     ui->Canvas->setDragMode(QGraphicsView::ScrollHandDrag);
 }
 
+// To PEN
+void MainWindow::on_MS_pen_clicked()
+{
+    ui->MStatus->setText("Pen");
+    scene->setPen();
+    ui->Canvas->setDragMode(QGraphicsView::NoDrag);
+}
+
+// To ERASER
+void MainWindow::on_MS_eraser_clicked()
+{
+    ui->MStatus->setText("Eraser");
+    scene->setEraser();
+    ui->Canvas->setDragMode(QGraphicsView::NoDrag);
+}
+
+// To DOOR
 void MainWindow::on_Door_clicked()
 {
     ui->MStatus->setText("Door");
     scene->setDoor();
     ui->Canvas->setDragMode(QGraphicsView::NoDrag);
-    ui->Doors->setEnabled(true);
 }
 
+// To SENSOR
 void MainWindow::on_Sensor_clicked()
 {
     ui->MStatus->setText("Sensor");
@@ -74,13 +77,18 @@ void MainWindow::on_Sensor_clicked()
 }
 
 
+// *** File ***
+
 // Save image of what shows in Canvas
 void MainWindow::on_Save_clicked()
 {
+    // Set path
     QString fileName = QFileDialog::getSaveFileName(
                     this, tr("open image file"),
-                    "./", tr("Image files(*.pgm);;All files (*.*)"));
-    QFile file(fileName + "_withIcons");
+                    "../map", tr("Image files(*.pgm);;All files (*.*)"));
+
+    // Save image
+    QFile file(fileName + "_full");
     file.open(QIODevice::WriteOnly);
     QImage pixmap(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);
     QPainter painter(&pixmap);
@@ -88,8 +96,8 @@ void MainWindow::on_Save_clicked()
     pixmap.save(&file, "PGM");
     file.close();
 
+    // Save image without marked
     scene->hideIcons();
-
     QFile file2(fileName);
     file2.open(QIODevice::WriteOnly);
     QImage pixmap2(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);
@@ -99,30 +107,43 @@ void MainWindow::on_Save_clicked()
     file2.close();
 }
 
-// Scale Canvas view with wheel
-void MainWindow::wheelEvent(QWheelEvent *event){
-
-    double degree = event->delta() / 1000.0;
-    ui->Canvas->scale(1+degree, 1+degree);
-}
-
 // Load pgm picture into canvas
 void MainWindow::on_Load_clicked()
 {
+    // Load image selected
     QString fileName = QFileDialog::getOpenFileName(
                     this, tr("open image file"),
-                    "./", tr("Image files(*.pgm);;All files (*.*)"));
+                    "../res/", tr("Image files(*.pgm);;All files (*.*)"));
+
+    // Render to background of scene
     scene->setBackground(fileName);
 }
 
+
+// *** Drawing features ***
+
+// Scale Canvas view with wheel
+void MainWindow::wheelEvent(QWheelEvent *event){
+
+    double degree = event->delta() / 2000.0;
+
+    // Restrict the scaling of Canvas
+    if(*viewSize / (1 + degree) < 1984){
+        ui->Canvas->scale(1+degree, 1+degree);
+        *viewSize /= (1 + degree);
+    }
+}
+
+// Eraser's thickness adjustment
 void MainWindow::on_Eraser_THICKNESS_sliderMoved(int position)
 {
     scene->setEraserThickness(position);
 }
 
-void MainWindow::on_Painter_THICKNESS_sliderMoved(int position)
+// Pen's thickness adjustment
+void MainWindow::on_Pen_THICKNESS_sliderMoved(int position)
 {
-    scene->setPainterThickness(position);
+    scene->setPenThickness(position);
 }
 
 

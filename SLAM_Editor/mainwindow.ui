@@ -78,7 +78,7 @@
      <string>Eraser</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="MS_painter">
+   <widget class="QPushButton" name="MS_pen">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -88,7 +88,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>Painter</string>
+     <string>Pen</string>
     </property>
    </widget>
    <widget class="QPushButton" name="MS_mouse">
@@ -175,7 +175,7 @@
      <enum>Qt::Horizontal</enum>
     </property>
    </widget>
-   <widget class="QSlider" name="Painter_THICKNESS">
+   <widget class="QSlider" name="Pen_THICKNESS">
     <property name="geometry">
      <rect>
       <x>10</x>
