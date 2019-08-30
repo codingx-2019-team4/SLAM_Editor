@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    canvasscene.cpp
+    canvasscene.cpp \
+    door.cpp \
+    sensor.cpp
 
 HEADERS  += mainwindow.h \
-    canvasscene.h
+    canvasscene.h \
+    door.h \
+    sensor.h
 
 FORMS    += mainwindow.ui

@@ -14,13 +14,25 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1600</width>
+     <height>953</height>
+    </size>
+   </property>
    <widget class="QPushButton" name="Save">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>60</y>
-      <width>100</width>
-      <height>100</height>
+      <x>10</x>
+      <y>20</y>
+      <width>111</width>
+      <height>41</height>
      </rect>
     </property>
     <property name="text">
@@ -30,8 +42,8 @@
    <widget class="QPushButton" name="Start">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>190</y>
+      <x>10</x>
+      <y>140</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -43,8 +55,8 @@
    <widget class="QPushButton" name="Stop">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>320</y>
+      <x>10</x>
+      <y>240</y>
       <width>100</width>
       <height>100</height>
      </rect>
@@ -56,8 +68,8 @@
    <widget class="QPushButton" name="MS_eraser">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>490</y>
+      <x>40</x>
+      <y>550</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -69,8 +81,8 @@
    <widget class="QPushButton" name="MS_painter">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>530</y>
+      <x>40</x>
+      <y>460</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -82,8 +94,8 @@
    <widget class="QPushButton" name="MS_mouse">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>580</y>
+      <x>40</x>
+      <y>400</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -130,27 +142,101 @@
       <height>900</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Load">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>LOAD</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="Eraser_THICKNESS">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>580</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="Painter_THICKNESS">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>490</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Door">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>340</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>DOOR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Sensor">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>370</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SENSOR</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="Doors"/>
    </widget>
   </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>1600</width>
-     <height>22</height>
+     <height>25</height>
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

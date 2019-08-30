@@ -23,10 +23,6 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    //Mouse status
-    void setMouse();
-    void setEraser();
-    void setPainter();
 
 private:
     Ui::MainWindow *ui;
@@ -40,7 +36,20 @@ private slots:
     void wheelEvent(QWheelEvent *);
 
     void on_Save_clicked();
+<<<<<<< Updated upstream
     //void on_pushButton_clicked();
+=======
+    void on_Load_clicked();
+    void on_Eraser_THICKNESS_sliderMoved(int position);
+    void on_Painter_THICKNESS_sliderMoved(int position);
+
+
+    void on_Door_clicked();
+
+    void on_Sensor_clicked();
+
+protected:
+>>>>>>> Stashed changes
 };
 
 #endif // MAINWINDOW_H
