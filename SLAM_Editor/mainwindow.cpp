@@ -22,8 +22,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->Canvas->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // Slider setup
-    ui->Eraser_THICKNESS->setRange(10, 100);
-    ui->Pen_THICKNESS->setRange(5, 30);
+    ui->Eraser_THICKNESS->setRange(6, 25);
+    ui->Pen_THICKNESS->setRange(3, 10);
 
 
 }
@@ -138,12 +138,18 @@ void MainWindow::wheelEvent(QWheelEvent *event){
 void MainWindow::on_Eraser_THICKNESS_sliderMoved(int position)
 {
     scene->setEraserThickness(position);
+    char str[10];
+    sprintf(str, "%dpx", position);
+    ui->EraserThickness->setText(str);
 }
 
 // Pen's thickness adjustment
 void MainWindow::on_Pen_THICKNESS_sliderMoved(int position)
 {
     scene->setPenThickness(position);
+    char str[10];
+    sprintf(str, "%dpx", position);
+    ui->PenThickness->setText(str);
 }
 
 

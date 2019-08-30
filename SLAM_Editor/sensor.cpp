@@ -3,7 +3,7 @@
 Sensor::Sensor(qreal x, qreal y)
 {
     this->setPos(x, y);
-    this->setPixmap(QPixmap("sensor.png").scaled(20, 20));
+    this->setPixmap(QPixmap("../res/sensor.png").scaled(20, 20));
 
 }
 

@@ -3,13 +3,14 @@
 
 
 #include <QMainWindow>
-#include "canvasscene.h"
 #include <QProcess>
 #include <QFileDialog>
 #include <QFile>
 #include <QPixmap>
 #include <QDebug>
 #include <QScrollBar>
+#include <stdio.h>
+#include "canvasscene.h"
 
 namespace Ui {
 class MainWindow;

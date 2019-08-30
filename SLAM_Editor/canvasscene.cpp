@@ -9,8 +9,8 @@ CanvasScene::CanvasScene(int x, int y, int w, int h) : QGraphicsScene(x, y, w, h
     this->LEnd = new QPoint();
     this->erasing = new bool(false);
     this->mouseStatus = new qreal(MS_MOUSE);
-    this->PenThickness = new qreal(5);
-    this->EraserThickness = new qreal(10);
+    this->PenThickness = new qreal(3);
+    this->EraserThickness = new qreal(6);
 
     this->setBackgroundBrush(QBrush(Qt::transparent));
 
