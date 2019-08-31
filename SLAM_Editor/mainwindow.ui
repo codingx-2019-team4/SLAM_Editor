@@ -94,8 +94,8 @@
    <widget class="QPushButton" name="MS_mouse">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>400</y>
+      <x>10</x>
+      <y>410</y>
       <width>89</width>
       <height>25</height>
      </rect>
@@ -191,8 +191,8 @@
    <widget class="QPushButton" name="Door">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>340</y>
+      <x>10</x>
+      <y>350</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -204,8 +204,8 @@
    <widget class="QPushButton" name="Sensor">
     <property name="geometry">
      <rect>
-      <x>40</x>
-      <y>370</y>
+      <x>10</x>
+      <y>380</y>
       <width>99</width>
       <height>27</height>
      </rect>
@@ -249,6 +249,19 @@
     </property>
     <property name="text">
      <string>6px</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Undo">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>10</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>UNDO</string>
     </property>
    </widget>
   </widget>

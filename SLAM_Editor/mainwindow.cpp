@@ -153,3 +153,8 @@ void MainWindow::on_Pen_THICKNESS_sliderMoved(int position)
 }
 
 
+
+void MainWindow::on_Undo_clicked()
+{
+    this->scene->undo();
+}

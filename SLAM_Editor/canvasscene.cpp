@@ -13,6 +13,7 @@ CanvasScene::CanvasScene(int x, int y, int w, int h) : QGraphicsScene(x, y, w, h
     this->EraserThickness = new qreal(6);
     this->lineBuf = new QGraphicsLineItem();
     this->lineBuf->hide();
+    this->lines = new std::vector<QGraphicsLineItem*>();
 
     this->setBackgroundBrush(QBrush(Qt::transparent));
 
@@ -52,6 +53,7 @@ void CanvasScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
         LEnd->setX(event->scenePos().x());
         LEnd->setY(event->scenePos().y());
         QGraphicsLineItem* newLine = new QGraphicsLineItem(QLine(*LStart, *LEnd));
+        lines->push_back(newLine);
         newLine->setPen(QPen(Qt::black, *PenThickness));
         this->addItem(newLine);
         LStart->setX(NOTDRAWING);
@@ -85,6 +87,14 @@ void CanvasScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
         newEllipse->setBrush(QBrush(this->backgroundBrush()));
         this->addItem(newEllipse);
     }
+}
+
+// Undo
+void CanvasScene::undo(){
+    if(lines->size() == 0) return;
+    QGraphicsLineItem *temp = this->lines->at(lines->size() - 1);
+    lines->pop_back();
+    delete temp;
 }
 
 

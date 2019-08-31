@@ -47,6 +47,7 @@ private slots:
     void on_Eraser_THICKNESS_sliderMoved(int position);
     void on_Pen_THICKNESS_sliderMoved(int position);
 
+    void on_Undo_clicked();
 };
 
 #endif // MAINWINDOW_H

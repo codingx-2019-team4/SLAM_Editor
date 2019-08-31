@@ -24,6 +24,7 @@
 #include <QPen>
 #include <QDebug>
 #include <QWheelEvent>
+#include <vector>
 
 class CanvasScene : public QGraphicsScene
 {
@@ -47,6 +48,9 @@ public:
     void setBackground(QString);
     void hideIcons();
 
+    // Undo feature
+    void undo();
+
 private:
 
     // The coordinates to draw lines
@@ -66,6 +70,9 @@ private:
     // Groups of doors & sensors
     QGraphicsItemGroup* doors;
     QGraphicsItemGroup* sensors;
+
+    // Undo feature
+    std::vector<QGraphicsLineItem*> *lines;
 
 public slots:
     void mousePressEvent(QGraphicsSceneMouseEvent *event);
