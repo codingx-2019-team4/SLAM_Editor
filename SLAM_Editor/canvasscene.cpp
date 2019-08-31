@@ -5,12 +5,14 @@
 CanvasScene::CanvasScene(int x, int y, int w, int h) : QGraphicsScene(x, y, w, h)
 {
     // Variables initialization
-    this->LStart = new QPoint();
+    this->LStart = new QPoint(NOTDRAWING, NOTDRAWING);
     this->LEnd = new QPoint();
     this->erasing = new bool(false);
     this->mouseStatus = new qreal(MS_MOUSE);
     this->PenThickness = new qreal(3);
     this->EraserThickness = new qreal(6);
+    this->lineBuf = new QGraphicsLineItem();
+    this->lineBuf->hide();
 
     this->setBackgroundBrush(QBrush(Qt::transparent));
 
@@ -52,6 +54,9 @@ void CanvasScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
         QGraphicsLineItem* newLine = new QGraphicsLineItem(QLine(*LStart, *LEnd));
         newLine->setPen(QPen(Qt::black, *PenThickness));
         this->addItem(newLine);
+        LStart->setX(NOTDRAWING);
+        LStart->setY(NOTDRAWING);
+        lineBuf->hide();
     }
     // Eraser OFF
     else if(*mouseStatus == MS_ERASER) *erasing = false;
@@ -59,6 +64,17 @@ void CanvasScene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event){
 
 // Mouse Moving
 void CanvasScene::mouseMoveEvent(QGraphicsSceneMouseEvent *event){
+
+    // Pen hint
+    if(*mouseStatus == MS_PEN){
+        if(LStart->x() != NOTDRAWING){
+            delete lineBuf;
+            lineBuf = new QGraphicsLineItem(QLine(*LStart, QPoint(event->scenePos().x(), event->scenePos().y())));
+            lineBuf->setPen(QPen(Qt::black, *PenThickness));
+            lineBuf->show();
+            this->addItem(lineBuf);
+        }
+    }
 
     // Eraser
     if(*mouseStatus == MS_ERASER && *erasing == true){

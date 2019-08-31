@@ -7,6 +7,7 @@
 #define MS_ERASER 303
 #define DOOR 304
 #define SENSOR 305
+#define NOTDRAWING -100
 
 
 #include <QWidget>
@@ -51,6 +52,9 @@ private:
     // The coordinates to draw lines
     QPoint* LStart;
     QPoint* LEnd;
+
+    // Buffer Image
+    QGraphicsLineItem* lineBuf;
 
     bool *erasing;
     qreal *mouseStatus;
