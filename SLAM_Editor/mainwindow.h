@@ -73,7 +73,7 @@ private slots:
     void on_Undo_clicked();
     void on_Start_clicked();
     void on_Stop_clicked();
-    void on_SLAMSave_clicked();
+    void on_mapSaveBt_clicked();
     void on_ImLoadB_clicked();
     void on_ImSaveB_clicked();
 

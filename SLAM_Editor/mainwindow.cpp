@@ -47,9 +47,9 @@ MainWindow::MainWindow(int argc,
     if(!ifstart){
         ui->Stop->setEnabled(false);
         //ui->Start->setEnabled(false);
-        ui->SLAMSave->setEnabled(false);
+        ui->mapSaveBt->setEnabled(false);
         ui->Save->setEnabled(false);
-        ui->starL->setText("Disconnected");
+        //ui->starL->setText("Disconnected");
     }
 
 }
@@ -117,9 +117,9 @@ void MainWindow::on_Start_clicked()
         showNoMasterMessage();
         ifstart = false;
     }else {
-        ui->starL->setText("Connected");
+        //ui->starL->setText("Connected");
         ui->Stop->setEnabled(true);
-        ui->Save->setEnabled(true);
+        ui->mapSaveBt->setEnabled(true);
         ui->Start->setEnabled(false);
         ifstart = true;
         process = new QProcess();
@@ -136,9 +136,9 @@ void MainWindow::on_Start_clicked()
 
 void MainWindow::on_Stop_clicked()
 {
-    ui->starL->setText("Disconnected");
+    //ui->starL->setText("Disconnected");
     ui->Stop->setEnabled(false);
-    ui->Save->setEnabled(false);
+    ui->mapSaveBt->setEnabled(false);
     ui->Start->setEnabled(true);
     ifstart = false;
     qnode.stop_map();
@@ -151,14 +151,13 @@ void MainWindow::on_Stop_clicked()
     }
 }
 
-void MainWindow::on_SLAMSave_clicked()
+void MainWindow::on_mapSaveBt_clicked()
 {
     //if(ifstart){
     if(ifstart){
         //QString path = QFileDialog::getExistingDirectory(this, tr("Choose directories"), ".", QFileDialog::ReadOnly);
         QString path = QFileDialog::getSaveFileName(
                             this, tr("Choose directories"));
-
         cout<< "[Directory22]" <<path.data()<<endl;
         cout<< "[Directory]" <<path.toStdString()<<endl;
         process2 = new QProcess();
@@ -235,6 +234,7 @@ void MainWindow::on_Save_clicked()
 // Load pgm picture into canvas
 void MainWindow::on_Load_clicked()
 {
+    ui->Save->setEnabled(true);
     // Load image selected
     QString fileName = QFileDialog::getOpenFileName(
                     this, tr("open image file"),
