@@ -1,2 +1,9 @@
-name: Ryan Braun
-position: LF
+image: /home/ros/fireHouse2.pgm
+resolution: 0.050000
+origin: [-50.000000, -50.000000, 0.000000]
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.196
+door1: {x: -28, y: -127}
+door2: {x: 93, y: -126}
+door3: {x: 208, y: -42}

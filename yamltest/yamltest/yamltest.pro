@@ -11,5 +11,7 @@ INCLUDEPATH += ../yamltest/yaml-cpp/include
 
 LIBS += ../yamltest/yaml-cpp/build/libyaml-cpp.a
 
+SOURCES += json.hpp
+
 SOURCES += \
         main.cpp

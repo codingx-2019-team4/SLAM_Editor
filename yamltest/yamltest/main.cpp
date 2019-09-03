@@ -1,10 +1,15 @@
 #include <iostream>
 #include <fstream>
+
+#include<vector>
 #include <stdio.h>
 
 #include<yaml-cpp/yaml.h>
+#include <iomanip>
 
 #include<json.hpp>
+using json = nlohmann::json;
+
 using namespace std;
 //using namespace YAML;
 
@@ -17,9 +22,9 @@ int main( int argc, char** argv )
 
 
 
-    if (argc-1==0) {
+    if (argc-2==0) {
         cout<<"Error path to yaml file."<<endl;
-        //return 0;
+        return 0;
     }else{
         cout<<"Reading file :"<< argv[1] <<endl;
         config = YAML::LoadFile(argv[1]);
@@ -27,34 +32,44 @@ int main( int argc, char** argv )
 
 
     }
+    //////////////////////////////////////////////////
+    string image = config["image"].as<string>();
+    double resolution = config["resolution"].as<double>();
 
-    cout << "name:" << config["name"].as<string>() << endl;
-    cout << "sex:" << config["sex"].as<string>() << endl;
-    cout << "age:" << config["age"].as<int>() << endl;
+    int negate = config["negate"].as<int>();
+    double occupied_thresh = config["occupied_thresh"].as<double>();
+    double free_thresh = config["free_thresh"].as<double>();
+
+    vector<double> origin;
+    origin = config["origin"].as<vector<double>>();
+
+    cout << "image:" << image << endl;
+    cout << "resolution:" << resolution << endl;
+
+    cout<<"origin: [";
+    for (std::vector<double>::const_iterator i = origin.begin(); i != origin.end(); ++i){
+        cout << *i << ' ';
+    }
+    cout<<"]"<<endl;
+
+    cout << "negate:" << negate  << endl;
+    cout << "occupied_thresh:" << occupied_thresh << endl;
+    cout << "free_thresh:" << free_thresh << endl;
+
+    json data2save;
+
+    data2save["image"] = image;
+    data2save["resolution"] = resolution;
+    data2save["origin"] = origin;
+    data2save["negate"] = negate;
+    data2save["occupied_thresh"] = occupied_thresh;
+    data2save["free_thresh"] = free_thresh;
+
+    string savePath = string(argv[2])+"output.json";
+    std::ofstream o(savePath);
+    o << std::setw(4) << data2save << std::endl;
 
 
-    cout << "skills c++:" << config["skills"]["c++"].as<int>() << endl;
-    cout << "skills java:" << config["skills"]["java"].as<int>() << endl;
-    cout << "skills android:" << config["skills"]["android"].as<int>() << endl;
-    cout << "skills python:" << config["skills"]["python"].as<int>() << endl;
-
-
-    out << YAML::BeginMap;
-    //out << config;
-    out << YAML::Key << "name";
-    out << YAML::Value << "Ryan Braun";
-    out << YAML::Key << "position";
-    out << YAML::Value << "LF";
-    out << YAML::EndMap;
-
-
-
-    std::ofstream fout(argv[1]);
-    config["score"]=99;
-    fout << config;
-    fout.close();
-
-    //std::ofstream fout(argv[1]);
 
 
     return 0;
