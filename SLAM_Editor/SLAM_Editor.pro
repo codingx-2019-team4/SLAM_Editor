@@ -18,13 +18,15 @@ LIBS += -L/opt/ros/kinetic/lib -lroscpp -lrospack -lpthread -lrosconsole -lrosco
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    canvasScene.cpp \
-    canvasView.cpp\
+    canvasscene.cpp \
+    door.cpp \
+    sensor.cpp
     qnode.cpp
 
 HEADERS  += mainwindow.h \
-    canvasScene.h \
-    canvasView.h \
+    canvasscene.h \
+    door.h \
+    sensor.h
     qnode.h\
 
 FORMS    += mainwindow.ui

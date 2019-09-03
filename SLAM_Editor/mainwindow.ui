@@ -6,317 +6,275 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>850</width>
-    <height>606</height>
+    <width>1600</width>
+    <height>1000</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <item>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="0,0">
-      <property name="rightMargin">
-       <number>0</number>
-      </property>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_6">
-        <property name="spacing">
-         <number>25</number>
-        </property>
-        <property name="leftMargin">
-         <number>20</number>
-        </property>
-        <property name="topMargin">
-         <number>20</number>
-        </property>
-        <property name="rightMargin">
-         <number>20</number>
-        </property>
-        <property name="bottomMargin">
-         <number>20</number>
-        </property>
-        <item>
-         <widget class="QPushButton" name="Start">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>START</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="Save">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>SAVE</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="Stop">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>STOP</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>1</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>State :</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="starL">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-              <horstretch>4</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0,0">
-        <property name="spacing">
-         <number>25</number>
-        </property>
-        <property name="leftMargin">
-         <number>20</number>
-        </property>
-        <property name="topMargin">
-         <number>20</number>
-        </property>
-        <property name="rightMargin">
-         <number>20</number>
-        </property>
-        <property name="bottomMargin">
-         <number>20</number>
-        </property>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <property name="spacing">
-           <number>10</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <item>
-           <widget class="QPushButton" name="ImLoadB">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Load Image</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="ImSaveB">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Save Image</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="MS_mouse">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>Mouse</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="MS_painter">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>Painter</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="MS_eraser">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>15</pointsize>
-           </font>
-          </property>
-          <property name="cursor">
-           <cursorShape>PointingHandCursor</cursorShape>
-          </property>
-          <property name="text">
-           <string>Eraser</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-           <widget class="QLabel" name="MStatus_titl">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Mouse Status:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="MStatus">
-            <property name="font">
-             <font>
-              <pointsize>15</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Mouse</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QVBoxLayout" name="Canvas">
-      <property name="spacing">
-       <number>6</number>
-      </property>
-      <property name="sizeConstraint">
-       <enum>QLayout::SetDefaultConstraint</enum>
-      </property>
-     </layout>
-    </item>
-   </layout>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Maximum" vsizetype="Maximum">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="maximumSize">
+    <size>
+     <width>1600</width>
+     <height>953</height>
+    </size>
+   </property>
+   <widget class="QPushButton" name="Save">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SAVE</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Start">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>START</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Stop">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>240</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>STOP</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="MS_eraser">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>550</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Eraser</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="MS_pen">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>460</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Pen</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="MS_mouse">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>410</y>
+      <width>89</width>
+      <height>25</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Mouse</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>620</y>
+      <width>111</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QLabel" name="MStatus_titl">
+       <property name="text">
+        <string>Mouse Status:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="MStatus">
+       <property name="text">
+        <string>Mouse</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGraphicsView" name="Canvas">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>40</y>
+      <width>1400</width>
+      <height>900</height>
+     </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Load">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>70</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>LOAD</string>
+    </property>
+   </widget>
+   <widget class="QSlider" name="Eraser_THICKNESS">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>580</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QSlider" name="Pen_THICKNESS">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>490</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Door">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>350</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>DOOR</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Sensor">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>380</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>SENSOR</string>
+    </property>
+   </widget>
+   <widget class="QWidget" name="verticalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>2</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <layout class="QVBoxLayout" name="Doors"/>
+   </widget>
+   <widget class="QLabel" name="PenThickness">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>460</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>3px</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="EraserThickness">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>550</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>6px</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Undo">
+    <property name="geometry">
+     <rect>
+      <x>350</x>
+      <y>10</y>
+      <width>99</width>
+      <height>27</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>UNDO</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1600</width>
+     <height>25</height>
+    </rect>
+   </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
