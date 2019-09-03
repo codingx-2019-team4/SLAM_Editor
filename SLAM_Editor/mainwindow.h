@@ -12,8 +12,6 @@
 #include <QGraphicsScene>
 #include <QApplication>
 #include <QProcess>
-#include "canvasScene.h"
-#include "canvasView.h"
 #include "qnode.h"
 #include <QProcess>
 #include <QFileDialog>
@@ -45,12 +43,14 @@ public:
 
 void showNoMasterMessage();
 
-bool ifstart=false;
+bool ifstart = false;
 QProcess *process;
 QProcess *process2;
+
 private:
     Ui::MainWindow *ui;
     CanvasScene *scene;
+    rosnode::QNode qnode;
     double *viewSize;
 
 private slots:
@@ -72,23 +72,10 @@ private slots:
 
     void on_Undo_clicked();
     void on_Start_clicked();
-
     void on_Stop_clicked();
-
-    void on_Save_clicked();
-
-
+    void on_SLAMSave_clicked();
     void on_ImLoadB_clicked();
-
     void on_ImSaveB_clicked();
-
-private:
-    rosnode::QNode qnode;
-    Ui::MainWindow *ui;
-    CanvasView *canvasView;
-
-
-
 
 
     // QWidget interface

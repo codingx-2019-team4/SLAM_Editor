@@ -47,8 +47,8 @@ MainWindow::MainWindow(int argc,
     if(!ifstart){
         ui->Stop->setEnabled(false);
         //ui->Start->setEnabled(false);
+        ui->SLAMSave->setEnabled(false);
         ui->Save->setEnabled(false);
-        ui->ImSaveB->setEnabled(false);
         ui->starL->setText("Disconnected");
     }
 
@@ -81,7 +81,6 @@ void MainWindow::on_MS_pen_clicked()
 // To ERASER
 void MainWindow::on_MS_eraser_clicked()
 {
-    canvasView->setEraser();
     ui->MStatus->setText("Eraser");
     scene->setEraser();
     ui->Canvas->setDragMode(QGraphicsView::NoDrag);
@@ -152,7 +151,7 @@ void MainWindow::on_Stop_clicked()
     }
 }
 
-void MainWindow::on_Save_clicked()
+void MainWindow::on_SLAMSave_clicked()
 {
     //if(ifstart){
     if(ifstart){

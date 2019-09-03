@@ -20,13 +20,13 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     canvasscene.cpp \
     door.cpp \
-    sensor.cpp
+    sensor.cpp \
     qnode.cpp
 
 HEADERS  += mainwindow.h \
     canvasscene.h \
     door.h \
-    sensor.h
+    sensor.h \
     qnode.h\
 
 FORMS    += mainwindow.ui
