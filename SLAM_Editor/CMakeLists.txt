@@ -19,9 +19,11 @@ set ( SLAM_Editor_HDRS
 set ( SLAM_Editor_SRCS
 	main.cpp
 	mainwindow.cpp
-	canvasScene.cpp
-	canvasView.cpp
+	canvasscene.cpp
+	door.cpp
+	sensor.cpp
 	qnode.cpp
+	
 	)
 
 set ( SLAM_Editor_UIS

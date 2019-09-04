@@ -62,8 +62,8 @@ private slots:
     void on_Sensor_clicked();
 
     // Image IO
-    void on_Save_clicked();
-    void on_Load_clicked();
+    void on_imgSaveBt_clicked();
+    void on_imgLoadBt_clicked();
 
     // Drawing features
     void wheelEvent(QWheelEvent *);
@@ -71,11 +71,15 @@ private slots:
     void on_Pen_THICKNESS_sliderMoved(int position);
 
     void on_Undo_clicked();
-    void on_Start_clicked();
-    void on_Stop_clicked();
+
+
+    
+    void on_mapStartBt_clicked();
     void on_mapSaveBt_clicked();
-    void on_ImLoadB_clicked();
-    void on_ImSaveB_clicked();
+    void on_mapStopBt_clicked();
+    
+    // void on_ImLoadB_clicked();
+    // void on_ImSaveB_clicked();
 
 
     // QWidget interface
