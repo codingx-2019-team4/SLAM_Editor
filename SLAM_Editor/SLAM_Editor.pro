@@ -8,6 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+CONFIG += console c++11
 TARGET = SLAM_Editor
 TEMPLATE = app
 
@@ -27,6 +28,7 @@ HEADERS  += mainwindow.h \
     canvasscene.h \
     door.h \
     sensor.h \
-    qnode.h\
+    qnode.h \
+    json.hpp
 
 FORMS    += mainwindow.ui

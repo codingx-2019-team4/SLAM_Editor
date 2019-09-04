@@ -1,6 +1,7 @@
 #include "canvasscene.h"
-#include "door.h"
-#include "sensor.h"
+
+using namespace std;
+using json = nlohmann::json;
 
 CanvasScene::CanvasScene(int x, int y, int w, int h) : QGraphicsScene(x, y, w, h)
 {
@@ -14,6 +15,8 @@ CanvasScene::CanvasScene(int x, int y, int w, int h) : QGraphicsScene(x, y, w, h
     this->lineBuf = new QGraphicsLineItem();
     this->lineBuf->hide();
     this->lines = new std::vector<QGraphicsLineItem*>();
+    this->doors_pos = new std::vector<qreal*>();
+    this->sensors_pos = new std::vector<qreal*>();
 
     this->setBackgroundBrush(QBrush(Qt::transparent));
 
@@ -35,13 +38,21 @@ void CanvasScene::mousePressEvent(QGraphicsSceneMouseEvent *event){
     else if(*mouseStatus == MS_ERASER) *erasing = true;
 
     else if(*mouseStatus == DOOR){
-        Door *door = new Door(event->scenePos().x() - 25, event->scenePos().y() - 25);
+        Door *door = new Door(event->scenePos().x() - 10, event->scenePos().y() - 10);
         doors->addToGroup(door);
+        qreal* temp = new qreal[2];
+        temp[0] = event->scenePos().x() - 992;
+        temp[1] = - event->scenePos().y() + 992;
+        doors_pos->push_back(temp);
     }
 
     else if(*mouseStatus == SENSOR){
         Sensor *sensor = new Sensor(event->scenePos().x() - 10, event->scenePos().y() - 10);
         sensors->addToGroup(sensor);
+        qreal* temp = new qreal[2];
+        temp[0] = event->scenePos().x() - 992;
+        temp[1] = - event->scenePos().y() + 992;
+        sensors_pos->push_back(temp);
     }
 }
 
@@ -155,4 +166,48 @@ void CanvasScene::setBackground(QString fileName){
 void CanvasScene::hideIcons(){
     doors->hide();
     sensors->hide();
+}
+
+void CanvasScene::exportJson(QWidget* parent){
+
+    // Transfer yaml to json and add doors and sensors
+    YAML::Node config;
+
+    // Load yaml selected
+    QString filename = QFileDialog::getOpenFileName(
+                    parent, tr("open image file"),
+                    "..", tr("YAML files(*.yaml);;All files (*.*)"));
+
+    string fileName = filename.toStdString();
+    config = YAML::LoadFile(fileName);
+    //////////////////////////////////////////////////
+    string image = config["image"].as<string>();
+    double resolution = config["resolution"].as<double>();
+
+    int negate = config["negate"].as<int>();
+    double occupied_thresh = config["occupied_thresh"].as<double>();
+    double free_thresh = config["free_thresh"].as<double>();
+
+    vector<double> origin;
+    origin = config["origin"].as<vector<double>>();
+
+    json data2save;
+
+    data2save["image"] = image;
+    data2save["resolution"] = resolution;
+    data2save["origin"] = origin;
+    data2save["negate"] = negate;
+    data2save["occupied_thresh"] = occupied_thresh;
+    data2save["free_thresh"] = free_thresh;
+    if(doors_pos->size() > 0)
+        for(int i = 0; i < doors_pos->size(); i++)
+            data2save["door"] += {(doors_pos->at(i))[0], (doors_pos->at(i))[1], 0.0};
+    if(sensors_pos->size() > 0)
+        for(int i = 0; i < sensors_pos->size(); i++)
+            data2save["sensor"] += {(sensors_pos->at(i))[0], (sensors_pos->at(i))[1], 0.0};
+
+    fileName = fileName.substr(0, fileName.size()-5);
+    string savePath = fileName+".json";
+    std::ofstream o(savePath);
+    o << std::setw(4) << data2save << std::endl;
 }

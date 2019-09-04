@@ -1,18 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include <QMessageBox>
-#include <QApplication>
-#include <QProcess>
-
-#include <stdlib.h>
-#include <stdio.h>
-
-#include <qnode.h>
-
-#include <ros/ros.h>
-#include <ros/network.h>
-
 using namespace std;
 using namespace Qt;
 using namespace rosnode;
@@ -24,7 +12,6 @@ MainWindow::MainWindow(int argc,
                         qnode(argc,argv),
                         ui(new Ui::MainWindow){
     ui->setupUi(this);
-
     scene = new CanvasScene(0, 0, 1984, 1984);  // Size of the input map
 
     // Variables initialize
@@ -184,35 +171,6 @@ void MainWindow::on_mapSaveBt_clicked()
 
 }
 
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-
-
-
-// void MainWindow::on_ImLoadB_clicked()
-// {
-//     QString fileName = QFileDialog::getOpenFileName(
-//                         this, tr("open image file"),
-//                         "./", tr("Image files(*.bmp *.pgm *.png *.ppm);;All files (*.*)"));
-//     QFile file(fileName);
-//     file.open(QIODevice::WriteOnly);
-
-//     //QPixmap pixmap = ui->Canvas->grab();
-//     //pixmap.save(&file, "PNG");
-// }
-
-// void MainWindow::on_ImSaveB_clicked()
-// {
-//     QString fileName = QFileDialog::getSaveFileName(
-//                         this, tr("open image file"),
-//                         "./", tr("Image files(*.bmp *.jpg *.pbm *.pgm *.png *.ppm *.xbm *.xpm);;All files (*.*)"));
-
-// }
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-// *** File ***
-
 // Save image of what shows in Canvas
 void MainWindow::on_imgSaveBt_clicked()
 {
@@ -239,6 +197,8 @@ void MainWindow::on_imgSaveBt_clicked()
     scene->render(&painter2);
     pixmap2.save(&file2, "PGM");
     file2.close();
+
+    scene->exportJson(this);
 }
 
 // Load pgm picture into canvas

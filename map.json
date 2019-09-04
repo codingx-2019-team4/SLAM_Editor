@@ -1,0 +1,19 @@
+{
+    "free_thresh": 0.196,
+    "image": "/home/chia-wei/Git/SLAM_Editor/map.pgm",
+    "negate": 0,
+    "occupied_thresh": 0.65,
+    "origin": [
+        -50.0,
+        -50.0,
+        0.0
+    ],
+    "resolution": 0.05,
+    "sensor": [
+        [
+            -114.764708092761,
+            -41.007894640810605,
+            0.0
+        ]
+    ]
+}

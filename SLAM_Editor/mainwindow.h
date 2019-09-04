@@ -1,7 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-
+#include "qnode.h"
+#include "canvasscene.h"
 
 #include <QMainWindow>
 #include <QDebug>
@@ -12,26 +13,20 @@
 #include <QGraphicsScene>
 #include <QApplication>
 #include <QProcess>
-#include "qnode.h"
-#include <QProcess>
 #include <QFileDialog>
 #include <QFile>
 #include <QPixmap>
 #include <QDebug>
 #include <QScrollBar>
-#include <stdio.h>
-#include "canvasscene.h"
+#include <QMessageBox>
 
-#include <QProcess>
-#include <QFileDialog>
-#include <QFile>
-#include <QPixmap>
+#include <stdlib.h>
+#include <ros/ros.h>
+#include <ros/network.h>
 
 namespace Ui {
 class MainWindow;
 }
-
-
 
 class MainWindow : public QMainWindow
 {

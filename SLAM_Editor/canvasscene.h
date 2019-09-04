@@ -26,6 +26,18 @@
 #include <QWheelEvent>
 #include <vector>
 
+// Json
+#include <iostream>
+#include <fstream>
+#include <stdio.h>
+#include <yaml-cpp/yaml.h>
+#include <iomanip>
+#include <json.hpp>
+#include <QFileDialog>
+
+#include "door.h"
+#include "sensor.h"
+
 class CanvasScene : public QGraphicsScene
 {
 public:
@@ -51,6 +63,9 @@ public:
     // Undo feature
     void undo();
 
+    // Store into json
+    void exportJson(QWidget*);
+
 private:
 
     // The coordinates to draw lines
@@ -70,6 +85,8 @@ private:
     // Groups of doors & sensors
     QGraphicsItemGroup* doors;
     QGraphicsItemGroup* sensors;
+    std::vector<qreal*> *doors_pos;
+    std::vector<qreal*> *sensors_pos;
 
     // Undo feature
     std::vector<QGraphicsLineItem*> *lines;

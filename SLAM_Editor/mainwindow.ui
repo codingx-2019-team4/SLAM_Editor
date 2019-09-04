@@ -300,7 +300,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QSlider" name="Eraser_THICKNESS">
+         <widget class="QSlider" name="Pen_THICKNESS">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
@@ -310,7 +310,7 @@
          <layout class="QVBoxLayout" name="Doors"/>
         </item>
         <item>
-         <widget class="QSlider" name="Pen_THICKNESS">
+         <widget class="QSlider" name="Eraser_THICKNESS">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
