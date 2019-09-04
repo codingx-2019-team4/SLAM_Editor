@@ -168,18 +168,13 @@ void CanvasScene::hideIcons(){
     sensors->hide();
 }
 
-void CanvasScene::exportJson(QWidget* parent){
+void CanvasScene::exportJson(QString filename){
 
     // Transfer yaml to json and add doors and sensors
     YAML::Node config;
 
-    // Load yaml selected
-    QString filename = QFileDialog::getOpenFileName(
-                    parent, tr("open image file"),
-                    "..", tr("YAML files(*.yaml);;All files (*.*)"));
-
     string fileName = filename.toStdString();
-    config = YAML::LoadFile(fileName);
+    config = YAML::LoadFile(fileName + ".yaml");
     //////////////////////////////////////////////////
     string image = config["image"].as<string>();
     double resolution = config["resolution"].as<double>();
@@ -190,6 +185,19 @@ void CanvasScene::exportJson(QWidget* parent){
 
     vector<double> origin;
     origin = config["origin"].as<vector<double>>();
+
+    cout << "image:" << image << endl;
+    cout << "resolution:" << resolution << endl;
+
+    cout<<"origin: [";
+    for (std::vector<double>::const_iterator i = origin.begin(); i != origin.end(); ++i){
+        cout << *i << ' ';
+    }
+    cout<<"]"<<endl;
+
+    cout << "negate:" << negate  << endl;
+    cout << "occupied_thresh:" << occupied_thresh << endl;
+    cout << "free_thresh:" << free_thresh << endl;
 
     json data2save;
 
@@ -206,7 +214,6 @@ void CanvasScene::exportJson(QWidget* parent){
         for(int i = 0; i < sensors_pos->size(); i++)
             data2save["sensor"] += {(sensors_pos->at(i))[0], (sensors_pos->at(i))[1], 0.0};
 
-    fileName = fileName.substr(0, fileName.size()-5);
     string savePath = fileName+".json";
     std::ofstream o(savePath);
     o << std::setw(4) << data2save << std::endl;

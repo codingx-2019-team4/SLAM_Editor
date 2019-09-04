@@ -23,6 +23,9 @@
 #include <stdlib.h>
 #include <ros/ros.h>
 #include <ros/network.h>
+#include <string>
+
+#include <QDebug>
 
 namespace Ui {
 class MainWindow;

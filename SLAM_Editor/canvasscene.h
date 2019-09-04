@@ -64,7 +64,7 @@ public:
     void undo();
 
     // Store into json
-    void exportJson(QWidget*);
+    void exportJson(QString);
 
 private:
 

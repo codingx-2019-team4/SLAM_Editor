@@ -150,7 +150,7 @@ void MainWindow::on_mapSaveBt_clicked()
     if(ifstart){
         //QString path = QFileDialog::getExistingDirectory(this, tr("Choose directories"), ".", QFileDialog::ReadOnly);
         QString path = QFileDialog::getSaveFileName(
-                            this, tr("Choose directories"));
+                            this, tr("Choose directories"), "..");
         cout<< "[Directory22]" <<path.data()<<endl;
         cout<< "[Directory]" <<path.toStdString()<<endl;
         process2 = new QProcess();
@@ -165,22 +165,34 @@ void MainWindow::on_mapSaveBt_clicked()
         }catch (exception& e){
             cout << "[ERROR] map server crash." << endl;
         }
+
+        ui->imgLoadBt->setEnabled(false);
+        ui->imgSaveBt->setEnabled(true);
+        ui->Door->setEnabled(true);
+        ui->Sensor->setEnabled(true);
+        ui->MS_mouse->setEnabled(true);
+        ui->MS_eraser->setEnabled(true);
+        ui->MS_pen->setEnabled(true);
+        scene->setBackground(path + ".pgm");
     }else {
         cout<<"[ERROR] core crash. " << endl;
     }
-
 }
 
 // Save image of what shows in Canvas
 void MainWindow::on_imgSaveBt_clicked()
 {
-    // Set path
-    QString fileName = QFileDialog::getSaveFileName(
-                    this, tr("open image file"),
-                    "../map", tr("Image files(*.pgm);;All files (*.*)"));
+    // Load yaml selected
+    QString fileName = QFileDialog::getOpenFileName(
+                    this, tr("open yaml file"),
+                    "..", tr("YAML files(*.yaml);;All files (*.*)"));
+
+    string filename = fileName.toStdString();
+    filename = filename.substr(0, filename.size() - 5);
+    fileName = QString::fromStdString(filename);
 
     // Save image
-    QFile file(fileName + "_full");
+    QFile file(fileName + "_full.pgm");
     file.open(QIODevice::WriteOnly);
     QImage pixmap(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);
     QPainter painter(&pixmap);
@@ -190,7 +202,7 @@ void MainWindow::on_imgSaveBt_clicked()
 
     // Save image without marked
     scene->hideIcons();
-    QFile file2(fileName);
+    QFile file2(fileName + ".pgm");
     file2.open(QIODevice::WriteOnly);
     QImage pixmap2(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);
     QPainter painter2(&pixmap2);
@@ -198,7 +210,7 @@ void MainWindow::on_imgSaveBt_clicked()
     pixmap2.save(&file2, "PGM");
     file2.close();
 
-    scene->exportJson(this);
+    scene->exportJson(fileName);
 }
 
 // Load pgm picture into canvas
