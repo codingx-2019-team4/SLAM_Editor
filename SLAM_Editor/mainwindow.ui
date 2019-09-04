@@ -28,7 +28,7 @@
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0,1">
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,3">
+     <layout class="QVBoxLayout" name="verticalLayout_4" stretch="2,5">
       <property name="spacing">
        <number>10</number>
       </property>
@@ -112,6 +112,13 @@
           </property>
           <property name="text">
            <string>STOP</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="mapStateLable">
+          <property name="text">
+           <string>Disconnect</string>
           </property>
          </widget>
         </item>

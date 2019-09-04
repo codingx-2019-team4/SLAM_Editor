@@ -43,14 +43,18 @@ MainWindow::MainWindow(int argc,
     ui->Eraser_THICKNESS->setRange(6, 25);
     ui->Pen_THICKNESS->setRange(3, 10);
 
+    
+    ui->mapStartBt->setEnabled(true;
+    ui->mapStopBt->setEnabled(false);
+    ui->mapSaveBt->setEnabled(false);
 
-    if(!ifstart){
-        ui->Stop->setEnabled(false);
-        //ui->Start->setEnabled(false);
-        ui->mapSaveBt->setEnabled(false);
-        ui->Save->setEnabled(false);
-        //ui->starL->setText("Disconnected");
-    }
+    ui->imgLoadBt->setEnabled(true);
+    ui->imgSaveBt->setEnabled(false);
+    ui->Door->setEnabled(false);
+    ui->Sensor->setEnabled(false);
+    ui->MS_mouse->setEnabled(false);
+    ui->MS_eraser->setEnabled(false);
+    ui->MS_pen->setEnabled(false);
 
 }
 
@@ -59,7 +63,8 @@ MainWindow::~MainWindow()
     delete scene;
     delete ui;
 }
-
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 // *** Mouse Status ***
 
 // To MOUSE
@@ -102,17 +107,16 @@ void MainWindow::on_Sensor_clicked()
     ui->Canvas->setDragMode(QGraphicsView::NoDrag);
 }
 
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+//SLAM
+
 void MainWindow::showNoMasterMessage() {
     QMessageBox msgBox;
     msgBox.setText("Couldn't find the ros master.");
     msgBox.exec();
     //close();
 }
-
-
-////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////
-//SLAM
 
 void MainWindow::on_mapStartBt_clicked()
 {
@@ -121,10 +125,10 @@ void MainWindow::on_mapStartBt_clicked()
         showNoMasterMessage();
         ifstart = false;
     }else {
-        //ui->starL->setText("Connected");
-        ui->Stop->setEnabled(true);
+        ui->mapStateLable->setText("Connected");
+        ui->mapStopBt->setEnabled(true);
         ui->mapSaveBt->setEnabled(true);
-        ui->Start->setEnabled(false);
+        ui->mapStartBt->setEnabled(false);
         ifstart = true;
         process = new QProcess();
         try{
@@ -136,13 +140,12 @@ void MainWindow::on_mapStartBt_clicked()
     }
 }
 
-
 void MainWindow::on_mapStopBt_clicked()
 {
     //ui->starL->setText("Disconnected");
-    ui->Stop->setEnabled(false);
+    ui->mapStopBt->setEnabled(false);
     ui->mapSaveBt->setEnabled(false);
-    ui->Start->setEnabled(true);
+    ui->mapStartBt->setEnabled(true);
     ifstart = false;
     qnode.stop_map();
     try{
@@ -206,7 +209,8 @@ void MainWindow::on_mapSaveBt_clicked()
 
 // }
 
-
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 // *** File ***
 
 // Save image of what shows in Canvas
@@ -240,7 +244,13 @@ void MainWindow::on_imgSaveBt_clicked()
 // Load pgm picture into canvas
 void MainWindow::on_imgLoadBt_clicked()
 {
-    ui->Save->setEnabled(true);
+    ui->imgLoadBt->setEnabled(false);
+    ui->imgSaveBt->setEnabled(true);
+    ui->Door->setEnabled(true);
+    ui->Sensor->setEnabled(true);
+    ui->MS_mouse->setEnabled(true);
+    ui->MS_eraser->setEnabled(true);
+    ui->MS_pen->setEnabled(true);
     // Load image selected
     QString fileName = QFileDialog::getOpenFileName(
                     this, tr("open image file"),
@@ -250,7 +260,8 @@ void MainWindow::on_imgLoadBt_clicked()
     scene->setBackground(fileName);
 }
 
-
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 // *** Drawing features ***
 
 // Scale Canvas view with wheel
