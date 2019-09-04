@@ -110,7 +110,11 @@ void MainWindow::showNoMasterMessage() {
 }
 
 
-void MainWindow::on_Start_clicked()
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+//SLAM
+
+void MainWindow::on_mapStartBt_clicked()
 {
     //ros::init(qnode.init_argc,init_argv,"FireHouse");
     if ( !qnode.check_master() ) {
@@ -133,8 +137,7 @@ void MainWindow::on_Start_clicked()
 }
 
 
-
-void MainWindow::on_Stop_clicked()
+void MainWindow::on_mapStopBt_clicked()
 {
     //ui->starL->setText("Disconnected");
     ui->Stop->setEnabled(false);
@@ -178,33 +181,36 @@ void MainWindow::on_mapSaveBt_clicked()
 
 }
 
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
 
-void MainWindow::on_ImLoadB_clicked()
-{
-    QString fileName = QFileDialog::getOpenFileName(
-                        this, tr("open image file"),
-                        "./", tr("Image files(*.bmp *.pgm *.png *.ppm);;All files (*.*)"));
-    QFile file(fileName);
-    file.open(QIODevice::WriteOnly);
 
-    //QPixmap pixmap = ui->Canvas->grab();
-    //pixmap.save(&file, "PNG");
-}
+// void MainWindow::on_ImLoadB_clicked()
+// {
+//     QString fileName = QFileDialog::getOpenFileName(
+//                         this, tr("open image file"),
+//                         "./", tr("Image files(*.bmp *.pgm *.png *.ppm);;All files (*.*)"));
+//     QFile file(fileName);
+//     file.open(QIODevice::WriteOnly);
 
-void MainWindow::on_ImSaveB_clicked()
-{
-    QString fileName = QFileDialog::getSaveFileName(
-                        this, tr("open image file"),
-                        "./", tr("Image files(*.bmp *.jpg *.pbm *.pgm *.png *.ppm *.xbm *.xpm);;All files (*.*)"));
+//     //QPixmap pixmap = ui->Canvas->grab();
+//     //pixmap.save(&file, "PNG");
+// }
 
-}
+// void MainWindow::on_ImSaveB_clicked()
+// {
+//     QString fileName = QFileDialog::getSaveFileName(
+//                         this, tr("open image file"),
+//                         "./", tr("Image files(*.bmp *.jpg *.pbm *.pgm *.png *.ppm *.xbm *.xpm);;All files (*.*)"));
+
+// }
 
 
 // *** File ***
 
 // Save image of what shows in Canvas
-void MainWindow::on_Save_clicked()
+void MainWindow::on_imgSaveBt_clicked()
 {
     // Set path
     QString fileName = QFileDialog::getSaveFileName(
@@ -232,7 +238,7 @@ void MainWindow::on_Save_clicked()
 }
 
 // Load pgm picture into canvas
-void MainWindow::on_Load_clicked()
+void MainWindow::on_imgLoadBt_clicked()
 {
     ui->Save->setEnabled(true);
     // Load image selected
