@@ -44,7 +44,7 @@ MainWindow::MainWindow(int argc,
     ui->Pen_THICKNESS->setRange(3, 10);
 
     
-    ui->mapStartBt->setEnabled(true;
+    ui->mapStartBt->setEnabled(true);
     ui->mapStopBt->setEnabled(false);
     ui->mapSaveBt->setEnabled(false);
 
