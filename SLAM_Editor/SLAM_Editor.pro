@@ -8,15 +8,19 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
 CONFIG += console c++11
 TARGET = SLAM_Editor
 TEMPLATE = app
 
+QMAKE_CXXFLAGS += -std=c++11
+
+INCLUDEPATH += $${PWD}/yaml-cpp/include
+LIBS += $${PWD}/yaml-cpp/build/libyaml-cpp.a
+
 INCLUDEPATH += -I /opt/ros/kinetic/include
 DEPENDPATH +=  /opt/ros/kinetic/include
 LIBS += -L/opt/ros/kinetic/lib -lroscpp -lrospack -lpthread -lrosconsole -lrosconsole_log4cxx -lrosconsole_backend_interface -lxmlrpcpp -lroscpp_serialization -lrostime  -lcpp_common  -lroslib -ltf  -lyaml-cpp -lkdl_conversions
-
-message($${PWD})
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -32,9 +36,7 @@ HEADERS  += mainwindow.h \
     sensor.h \
     qnode.h
 
-INCLUDEPATH += $${PWD}/yaml-cpp/include
 
-LIBS += $${PWD}/yaml-cpp/build/libyaml-cpp.a
 
 
 FORMS    += mainwindow.ui

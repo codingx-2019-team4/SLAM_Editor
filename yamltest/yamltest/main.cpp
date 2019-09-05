@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
 
-#include<vector>
+#include <vector>
 #include <stdio.h>
 
-#include<yaml-cpp/yaml.h>
+#include <yaml-cpp/yaml.h>
 #include <iomanip>
 
 #include<json.hpp>

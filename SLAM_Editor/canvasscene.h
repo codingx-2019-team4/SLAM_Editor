@@ -25,6 +25,7 @@
 #include <QDebug>
 #include <QWheelEvent>
 #include <vector>
+#include <QString>
 
 // Json
 #include <iostream>
@@ -87,6 +88,8 @@ private:
     QGraphicsItemGroup* sensors;
     std::vector<qreal*> *doors_pos;
     std::vector<qreal*> *sensors_pos;
+
+    YAML::Node* config;
 
     // Undo feature
     std::vector<QGraphicsLineItem*> *lines;

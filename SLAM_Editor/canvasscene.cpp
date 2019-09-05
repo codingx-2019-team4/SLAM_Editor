@@ -20,6 +20,8 @@ CanvasScene::CanvasScene(int x, int y, int w, int h) : QGraphicsScene(x, y, w, h
 
     this->setBackgroundBrush(QBrush(Qt::transparent));
 
+    this->config = new YAML::Node();
+
     // Create item groups
     doors = this->createItemGroup(this->selectedItems());
     sensors = this->createItemGroup(this->selectedItems());
@@ -168,23 +170,25 @@ void CanvasScene::hideIcons(){
     sensors->hide();
 }
 
-void CanvasScene::exportJson(QString filename){
+void CanvasScene::exportJson(QString Filename){
 
     // Transfer yaml to json and add doors and sensors
-    YAML::Node config;
+    string FileName = "";
+    FileName.append((Filename + ".yaml").toStdString());
+    char* FILENAME = new char[FileName.size() + 1];
+    strcpy(FILENAME, FileName.c_str());
 
-    string fileName = filename.toStdString();
-    config = YAML::LoadFile(fileName + ".yaml");
+    *config = YAML::LoadFile(FILENAME);
     //////////////////////////////////////////////////
-    string image = config["image"].as<string>();
-    double resolution = config["resolution"].as<double>();
+    string image = (*config)["image"].as<string>();
+    double resolution = (*config)["resolution"].as<double>();
 
-    int negate = config["negate"].as<int>();
-    double occupied_thresh = config["occupied_thresh"].as<double>();
-    double free_thresh = config["free_thresh"].as<double>();
+    int negate = (*config)["negate"].as<int>();
+    double occupied_thresh = (*config)["occupied_thresh"].as<double>();
+    double free_thresh = (*config)["free_thresh"].as<double>();
 
     vector<double> origin;
-    origin = config["origin"].as<vector<double>>();
+    origin = (*config)["origin"].as<vector<double>>();
 
     cout << "image:" << image << endl;
     cout << "resolution:" << resolution << endl;
@@ -214,7 +218,10 @@ void CanvasScene::exportJson(QString filename){
         for(int i = 0; i < sensors_pos->size(); i++)
             data2save["sensor"] += {(sensors_pos->at(i))[0], (sensors_pos->at(i))[1], 0.0};
 
-    string savePath = fileName+".json";
+    FileName = "";
+    FileName.append((Filename).toStdString());
+    string savePath = FileName+".json";
     std::ofstream o(savePath);
     o << std::setw(4) << data2save << std::endl;
+    free(FILENAME);
 }
