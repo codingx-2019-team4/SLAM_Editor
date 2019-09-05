@@ -3,7 +3,7 @@
 Door::Door(qreal x, qreal y)
 {
     this->setPos(x, y);
-    this->setPixmap(QPixmap("../res/door.png").scaled(20, 20));
+    this->setPixmap(QPixmap("../resources/door.png").scaled(20, 20));
 }
 
 Door::~Door(){

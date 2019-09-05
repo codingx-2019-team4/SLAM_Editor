@@ -150,7 +150,7 @@ void MainWindow::on_mapSaveBt_clicked()
     if(ifstart){
         //QString path = QFileDialog::getExistingDirectory(this, tr("Choose directories"), ".", QFileDialog::ReadOnly);
         QString path = QFileDialog::getSaveFileName(
-                            this, tr("Choose directories"), "..");
+                            this, tr("Choose directories"), "../../models/");
         cout<< "[Directory22]" <<path.data()<<endl;
         cout<< "[Directory]" <<path.toStdString()<<endl;
         process2 = new QProcess();
@@ -185,7 +185,7 @@ void MainWindow::on_imgSaveBt_clicked()
     // Load yaml selected
     QString fileName = QFileDialog::getOpenFileName(
                     this, tr("open yaml file"),
-                    "..", tr("YAML files(*.yaml);;All files (*.*)"));
+                    "../../models/", tr("YAML files(*.yaml);;All files (*.*)"));
 
     string filename = fileName.toStdString();
     filename = filename.substr(0, filename.size() - 5);
@@ -202,7 +202,7 @@ void MainWindow::on_imgSaveBt_clicked()
 
     // Save image without marked
     scene->hideIcons();
-    QFile file2(fileName + ".pgm");
+    QFile file2(fileName + "_edited.pgm");
     file2.open(QIODevice::WriteOnly);
     QImage pixmap2(scene->sceneRect().size().toSize(), QImage::Format_ARGB32);
     QPainter painter2(&pixmap2);
@@ -211,6 +211,20 @@ void MainWindow::on_imgSaveBt_clicked()
     file2.close();
 
     scene->exportJson(fileName);
+
+    QProcess* processPGM = new QProcess();
+    try{
+        processPGM->startDetached("python ../upload/PGM.py " + fileName + "_edited.pgm");
+    }catch (exception& e){
+        cout << ("[ERROR] python ../upload/PGM.py " + filename + ".pgm" )<< endl;
+    }
+
+    QProcess* processJSON = new QProcess();
+    try{
+        processJSON->startDetached("python ../upload/JSON.py " + fileName + ".json");
+    }catch (exception& e){
+        cout << ("[ERROR] python ../upload/JSON.py " + filename + ".json" )<< endl;
+    }
 }
 
 // Load pgm picture into canvas
@@ -226,7 +240,7 @@ void MainWindow::on_imgLoadBt_clicked()
     // Load image selected
     QString fileName = QFileDialog::getOpenFileName(
                     this, tr("open image file"),
-                    "../res/", tr("Image files(*.pgm);;All files (*.*)"));
+                    "../../models/", tr("Image files(*.pgm);;All files (*.*)"));
 
     // Render to background of scene
     scene->setBackground(fileName);

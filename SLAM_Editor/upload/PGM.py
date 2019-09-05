@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[8]:
+
+
+#!/usr/bin/python
+# -*- coding: UTF-8 -*-
+
+import sys
+import socket# 客户端 发送一个数据，再接收一个数据
+import time
+client = socket.socket(socket.AF_INET,socket.SOCK_STREAM) #声明socket类型，同时生成链接对象
+ip = "140.116.182.200"
+port = 6668
+
+client.connect((ip,port)) #建立一个链接，连接到本地的6969端口
+
+# 傳pgm檔
+imgFile = open(sys.argv[1], "rb")
+txt = "pgm"
+client.send(txt.encode('utf-8'))
+time.sleep(5)
+while True:
+    imgData = imgFile.read(1)
+    if not imgData:
+        break  # 讀完檔案結束迴圈
+    client.send(imgData)
+client.close() #关闭这个链接
+
