@@ -16,6 +16,7 @@ INCLUDEPATH += -I /opt/ros/kinetic/include
 DEPENDPATH +=  /opt/ros/kinetic/include
 LIBS += -L/opt/ros/kinetic/lib -lroscpp -lrospack -lpthread -lrosconsole -lrosconsole_log4cxx -lrosconsole_backend_interface -lxmlrpcpp -lroscpp_serialization -lrostime  -lcpp_common  -lroslib -ltf  -lyaml-cpp -lkdl_conversions
 
+message($${PWD})
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -29,12 +30,11 @@ HEADERS  += mainwindow.h \
     canvasscene.h \
     door.h \
     sensor.h \
-    qnode.h \
-    json.hpp
+    qnode.h
 
-INCLUDEPATH += ../yamltest/yaml-cpp/include
+INCLUDEPATH += $${PWD}/yaml-cpp/include
 
-LIBS += ../SLAM_Editor/yaml-cpp/build/libyaml-cpp.a
+LIBS += $${PWD}/yaml-cpp/build/libyaml-cpp.a
 
 
 FORMS    += mainwindow.ui
