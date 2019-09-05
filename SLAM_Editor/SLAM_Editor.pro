@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     canvasscene.cpp \
     door.cpp \
     sensor.cpp \
-    qnode.cpp
+    qnode.cpp \
+    json.hpp
 
 HEADERS  += mainwindow.h \
     canvasscene.h \
@@ -30,5 +31,10 @@ HEADERS  += mainwindow.h \
     sensor.h \
     qnode.h \
     json.hpp
+
+INCLUDEPATH += ../yamltest/yaml-cpp/include
+
+LIBS += ../SLAM_Editor/yaml-cpp/build/libyaml-cpp.a
+
 
 FORMS    += mainwindow.ui
